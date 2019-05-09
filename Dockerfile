@@ -10,4 +10,4 @@ EXPOSE 8090
 
 VOLUME [ "/certs" ]
 
-ENTRYPOINT [ "/usr/share/1337/landing", "-domain=1337.design", "-production=true", "-redirect-to-https=true" ]
+ENTRYPOINT [ "/usr/share/1337/landing", "-domain=1337.design", "-production=true" ]
