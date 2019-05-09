@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	httpPort = "127.0.0.1:8080"
+	httpPort = ":8080"
 )
 
 var (
@@ -66,7 +66,7 @@ func main() {
 			return fmt.Errorf("acme/autocert: only %s host is allowed", flgDomain)
 		}
 
-		dataDir := "."
+		dataDir := "/certs"
 		m = &autocert.Manager{
 			Prompt:     autocert.AcceptTOS,
 			HostPolicy: hostPolicy,
@@ -74,7 +74,7 @@ func main() {
 		}
 
 		httpsSrv = makeHTTPServer()
-		httpsSrv.Addr = ":443"
+		httpsSrv.Addr = ":8090"
 		httpsSrv.TLSConfig = &tls.Config{GetCertificate: m.GetCertificate}
 
 		go func() {
