@@ -27,7 +27,7 @@ case "$CMD" in
         docker push "mateuszdyminski/1337:latest"
 	;;
     docker-run)
-        docker run -it -d --rm -v $(pwd)/certs:/certs --restart unless-stopped -p 80:8080 -p 443:8090 mateuszdyminski/1337:latest 
+        sudo docker run -it -d -v $(pwd)/certs:/certs --restart unless-stopped -p 80:8080 -p 443:8090 mateuszdyminski/1337:$GIT_VERSION
     ;;
 	*)
 		usage

@@ -34,6 +34,11 @@ func parseFlags() {
 	flag.BoolVar(&flgProduction, "production", false, "if true, we start HTTPS server")
 	flag.BoolVar(&flgRedirectHTTPToHTTPS, "redirect-to-https", false, "if true, we redirect HTTP to HTTPS")
 	flag.Parse()
+
+	log.Println("got following configuration:")
+	log.Printf("domain flag: %s \n", flgDomain)
+	log.Printf("production flag: %v \n", flgProduction)
+	log.Printf("redirectHTTPtoHTTPS flag: %v \n", flgRedirectHTTPToHTTPS)
 }
 
 func makeHTTPServer() *http.Server {
@@ -60,6 +65,7 @@ func main() {
 	var httpsSrv *http.Server
 	if flgProduction {
 		hostPolicy := func(ctx context.Context, host string) error {
+			log.Printf("flag: %s, got: %s \n", flgDomain, host)
 			if host == flgDomain {
 				return nil
 			}
